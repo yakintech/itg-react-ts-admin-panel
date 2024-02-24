@@ -1,14 +1,18 @@
 import { baseApi } from 'api/baseApi';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Detail() {
 
     const { id } = useParams();
+    const navigate = useNavigate()
 
     // const [detail, setdetail] = useState({name:'', description:''})
     // const [detail, setdetail] = useState<any>({})
     const [detail, setdetail] = useState<DetailModel>({})
+
+
 
     useEffect(() => {
         baseApi.getOne('categories', id)
@@ -21,6 +25,7 @@ function Detail() {
 
 
     return (<>
+        <button onClick={() => navigate(-1)}>Go BACK!</button>
         <h1>Detail Page</h1>
         <p>ID: {id}</p>
         <p>Name: {detail.name?.toUpperCase()}</p>
@@ -33,7 +38,7 @@ function Detail() {
 export default Detail
 
 
-interface DetailModel{
+interface DetailModel {
     id?: number,
     name?: string,
     description?: string

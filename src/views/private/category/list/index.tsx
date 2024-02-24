@@ -2,11 +2,21 @@ import { Button } from '@mui/material'
 import { baseApi } from 'api/baseApi'
 import ITGGrid from 'components/core-components/grid'
 import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function List() {
 
   const [categories, setcategories] = useState([])
 
+
+  const navigate = useNavigate()
+
+  const location  = useLocation();
+
+
+  //useParams, useLocation, useNavigate
+
+  console.log("Location: ", location);
 
   useEffect(() => {
 
@@ -47,6 +57,18 @@ function List() {
         return (
           <div>
             <Button color='error' variant='contained' onClick={() => handleDelete(params.row.id)}>Delete</Button>
+          </div>
+        )
+      }
+    },
+    {
+      field:'detail',
+      headerName: 'Detail',
+      width: 130,
+      renderCell: (params : any) => {
+        return (
+          <div>
+            <Button variant='contained' onClick={() => navigate('/categories/' + params.row.id)}>Detail</Button>
           </div>
         )
       }
