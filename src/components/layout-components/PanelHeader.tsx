@@ -1,8 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function PanelHeader() {
-  return (
-    <div>PanelHeader</div>
+  
+  return (<>
+      <ul>
+        <li><Link to='/categories'>Categories</Link></li>
+      </ul>
+  </>
   )
 }
 
